@@ -33,7 +33,5 @@ CREATE TABLE IF NOT EXISTS task.manager
     target_account    UUID,
     quantity          DECIMAL(18, 2) NOT NULL,
     creation_date     TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
-    modification_date TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
-    FOREIGN KEY (source_account) REFERENCES task.account (uuid),
-    FOREIGN KEY (target_account) REFERENCES task.account (uuid)
+    modification_date TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6)
 );
