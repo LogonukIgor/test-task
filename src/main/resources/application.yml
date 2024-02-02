@@ -1,1 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aston
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    enabled: true
 
+server:
+  port: 8080
