@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "ACCOUNT", schema = "TASK")
+@Table(name = "account", schema = "task")
 public class Account {
     @Id
     @GeneratedValue(generator = "uuid")

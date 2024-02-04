@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS task.user
 (
     id                SERIAL PRIMARY KEY,
     name              VARCHAR(30) NOT NULL,
+    login             VARCHAR(100) UNIQUE NOT NULL,
     creation_date     TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
     modification_date TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6)
 );

@@ -1,6 +1,5 @@
-package by.logonuk.rest.account.impl;
+package by.logonuk.rest.account;
 
-import by.logonuk.rest.account.AccountController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
