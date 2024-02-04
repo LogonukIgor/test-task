@@ -3,6 +3,7 @@ package by.logonuk.rest.user;
 import by.logonuk.domain.entity.User;
 import by.logonuk.dto.user.UserCreateRequest;
 import by.logonuk.service.user.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class UserControllerImpl implements UserController{
 
     @Override
     @PostMapping("/create")
-    public User createUser(@RequestBody UserCreateRequest request) {
+    public User createUser(@RequestBody @Valid UserCreateRequest request) {
         return service.createUser(request);
     }
 }
