@@ -2,6 +2,7 @@ package by.logonuk.domain.entity;
 
 import by.logonuk.domain.enums.Currency;
 import by.logonuk.domain.enums.OperationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -35,15 +38,17 @@ public class Manager{
     @Column()
     private Double quantity;
 
-    @Column(name = "SOURCE_ACCOUNT")
-    private UUID source_account;
-
     @Column(name = "TARGET_ACCOUNT")
-    private UUID target_account;
+    private UUID targetAccount;
 
     @Column(name = "CREATION_DATE")
     private Timestamp creationDate;
 
     @Column(name = "MODIFICATION_DATE")
     private Timestamp modificationDate;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "SOURCE_ACCOUNT", referencedColumnName = "UUID")
+    private Account sourceAccount;
 }

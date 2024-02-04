@@ -28,12 +28,12 @@ public class User{
     @Column
     private String login;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Account> accounts;
-
-    @Column(name = "creation_date")
+    @Column(name = "CREATION_DATE")
     private Timestamp creationDate;
 
-    @Column(name = "modification_date")
+    @Column(name = "MODIFICATION_DATE")
     private Timestamp modificationDate;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Account> accounts;
 }
