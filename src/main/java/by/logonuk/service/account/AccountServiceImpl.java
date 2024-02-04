@@ -4,6 +4,7 @@ import by.logonuk.domain.entity.Account;
 import by.logonuk.domain.entity.User;
 import by.logonuk.domain.enums.Currency;
 import by.logonuk.domain.exceptions.AccountNotFoundException;
+import by.logonuk.domain.exceptions.CurrencyMismatchException;
 import by.logonuk.domain.exceptions.InsufficientFundsException;
 import by.logonuk.domain.exceptions.UserAlreadyExistsException;
 import by.logonuk.dto.account.AccountCreateRequest;
@@ -69,6 +70,10 @@ public class AccountServiceImpl implements AccountService {
     public Account transfer(AccountTransferRequest request) {
         Account account = valid(request.getAccountNumber(), request.getCode());
         Account targetAccount = valid(request.getTargetAccountNumber());
+
+        if (account.getCurrency() != targetAccount.getCurrency()) {
+            throw new CurrencyMismatchException();
+        }
 
         AtomicReference<Double> sourceBalance = new AtomicReference<>(account.getBalance());
         AtomicReference<Double> targetBalance = new AtomicReference<>(targetAccount.getBalance());

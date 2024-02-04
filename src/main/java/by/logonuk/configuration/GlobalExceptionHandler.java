@@ -1,6 +1,7 @@
 package by.logonuk.configuration;
 
 import by.logonuk.domain.exceptions.AccountNotFoundException;
+import by.logonuk.domain.exceptions.CurrencyMismatchException;
 import by.logonuk.domain.exceptions.InsufficientFundsException;
 import by.logonuk.domain.exceptions.UserAlreadyExistsException;
 import by.logonuk.domain.exceptions.UserNotFoundException;
@@ -24,19 +25,25 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(AccountNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<String> handleAccountNotFoundException(AccountNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(InsufficientFundsException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<String> handleInsufficientFundsException(InsufficientFundsException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CurrencyMismatchException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<String> handleCurrencyMismatchException(CurrencyMismatchException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

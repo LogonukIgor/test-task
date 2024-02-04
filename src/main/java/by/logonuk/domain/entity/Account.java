@@ -50,5 +50,5 @@ public class Account {
     private User user;
 
     @OneToMany(mappedBy = "sourceAccount", cascade = CascadeType.ALL)
-    private List<Manager> sourceManagers;
+    private List<Manager> managers;
 }
