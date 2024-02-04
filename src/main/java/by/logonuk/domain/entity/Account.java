@@ -38,9 +38,11 @@ public class Account {
     @Column(name = "BALANCE")
     private Double balance;
 
+    @JsonIgnore
     @Column(name = "CREATION_DATE")
     private Timestamp creationDate;
 
+    @JsonIgnore
     @Column(name = "MODIFICATION_DATE")
     private Timestamp modificationDate;
 

@@ -3,6 +3,7 @@ package by.logonuk.domain.entity;
 import by.logonuk.domain.enums.Currency;
 import by.logonuk.domain.enums.OperationType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 @Entity
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "MANAGER", schema = "TASK")
 public class Manager{
 
@@ -41,9 +43,11 @@ public class Manager{
     @Column(name = "TARGET_ACCOUNT")
     private UUID targetAccount;
 
+    @JsonIgnore
     @Column(name = "CREATION_DATE")
     private Timestamp creationDate;
 
+    @JsonIgnore
     @Column(name = "MODIFICATION_DATE")
     private Timestamp modificationDate;
 

@@ -1,5 +1,6 @@
 package by.logonuk.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,9 +29,11 @@ public class User{
     @Column
     private String login;
 
+    @JsonIgnore
     @Column(name = "CREATION_DATE")
     private Timestamp creationDate;
 
+    @JsonIgnore
     @Column(name = "MODIFICATION_DATE")
     private Timestamp modificationDate;
 

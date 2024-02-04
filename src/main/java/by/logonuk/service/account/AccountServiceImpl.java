@@ -3,6 +3,7 @@ package by.logonuk.service.account;
 import by.logonuk.domain.entity.Account;
 import by.logonuk.domain.entity.User;
 import by.logonuk.domain.enums.Currency;
+import by.logonuk.domain.enums.OperationType;
 import by.logonuk.domain.exceptions.AccountNotFoundException;
 import by.logonuk.domain.exceptions.CurrencyMismatchException;
 import by.logonuk.domain.exceptions.InsufficientFundsException;
@@ -12,6 +13,7 @@ import by.logonuk.dto.account.AccountTransactionRequest;
 import by.logonuk.dto.account.AccountTransferRequest;
 import by.logonuk.repository.AccountRepository;
 import by.logonuk.repository.UserRepository;
+import by.logonuk.service.manager.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
+
+    private final ManagerService managerService;
 
     private final AccountRepository repository;
 
@@ -44,6 +48,8 @@ public class AccountServiceImpl implements AccountService {
 
         account.setModificationDate(new Timestamp(System.currentTimeMillis()));
 
+        managerService.saveHistory(OperationType.REPLENISHMENT, account, request.getSum());
+
         return repository.save(account);
     }
 
@@ -61,6 +67,8 @@ public class AccountServiceImpl implements AccountService {
         account.setBalance(balance.get());
 
         account.setModificationDate(new Timestamp(System.currentTimeMillis()));
+
+        managerService.saveHistory(OperationType.WRITING, account, request.getSum());
 
         return repository.save(account);
     }
@@ -90,6 +98,9 @@ public class AccountServiceImpl implements AccountService {
 
         account.setModificationDate(new Timestamp(System.currentTimeMillis()));
         targetAccount.setModificationDate(new Timestamp(System.currentTimeMillis()));
+
+        managerService.saveHistory(OperationType.TRANSFER, account, targetAccount, request.getSum());
+        managerService.saveHistory(OperationType.RECEIPT_OF_FUNDS, targetAccount, account, request.getSum());
 
         repository.save(targetAccount);
         return repository.save(account);
