@@ -20,9 +20,5 @@ public class AccountTransferRequest {
     private String targetAccountNumber;
 
     @NotBlank(message = "Поле не должно быть пустым")
-    @Pattern(regexp = "^(REPLENISHMENT|WRITING|TRANSFER)$", message = "Недопустимый тип трансфера")
-    private String operationType;
-
-    @NotBlank(message = "Поле не должно быть пустым")
     private Double sum;
 }
