@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserControllerImpl implements UserController{
+public class UserControllerImpl implements UserController {
 
     private final UserService service;
 
@@ -34,7 +34,7 @@ public class UserControllerImpl implements UserController{
     }
 
     @Override
-    @GetMapping("/info")
+    @PostMapping("/info")
     public UserResponse findOne(@RequestBody @Valid UserWithAccountsRequest request) {
         User user = service.findOne(request);
         return mapper.mapUserToUserResponse(user);

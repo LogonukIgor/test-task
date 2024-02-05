@@ -11,7 +11,7 @@ import lombok.Data;
 public class AccountTransferRequest {
 
     @NotBlank(message = "Поле не должно быть пустым")
-    @Pattern(regexp = "^\\D*\\d{4}\\D*$", message = "Строка должна содержать четыре цифры и больше ничего")
+    @Pattern(regexp = "^\\d{4}$", message = "Строка должна содержать четыре цифры и больше ничего")
     @Schema(description = "4-ёх значный PIN-code")
     private String code;
 

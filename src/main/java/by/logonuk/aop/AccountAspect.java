@@ -15,6 +15,8 @@ public class AccountAspect {
 
     @Pointcut("execution(* by.logonuk.rest.account.AccountControllerImpl.*(..))")
     public void accountControllerMethods() {}
+    @Pointcut("execution(* by.logonuk.rest.account.AccountControllerImpl.getInfo(..))")
+    public void accountControllerGetInfo() {}
 
     @Before("accountControllerMethods()")
     public void logMethodCall(JoinPoint joinPoint) {
@@ -26,7 +28,7 @@ public class AccountAspect {
         }
     }
 
-    @AfterReturning(pointcut = "accountControllerMethods()", returning = "result")
+    @AfterReturning(pointcut = " accountControllerGetInfo()", returning = "result")
     public void logAfterReturning(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getName();
         log.info("[{}] <-- {}", methodName, result);
