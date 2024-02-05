@@ -102,8 +102,9 @@ public class AccountServiceImpl implements AccountService {
         targetBalance.updateAndGet(existingBalance -> existingBalance + request.getSum());
         targetAccount.setBalance(targetBalance.get());
 
-        account.setModificationDate(new Timestamp(System.currentTimeMillis()));
-        targetAccount.setModificationDate(new Timestamp(System.currentTimeMillis()));
+        Timestamp modificationDate = new Timestamp(System.currentTimeMillis());
+        account.setModificationDate(modificationDate);
+        targetAccount.setModificationDate(modificationDate);
 
         managerService.saveHistory(OperationType.TRANSFER, account, targetAccount, request.getSum());
         managerService.saveHistory(OperationType.RECEIPT_OF_FUNDS, targetAccount, account, request.getSum());
