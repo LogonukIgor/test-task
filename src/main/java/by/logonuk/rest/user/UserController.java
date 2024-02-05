@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
-@Tag(name = "User", description = "User API")
+@Tag(name = "User", description = "Упровление профилем пользователя")
 public interface UserController {
 
     @Operation(summary = "Найти всех пользователей")

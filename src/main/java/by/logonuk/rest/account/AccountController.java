@@ -7,7 +7,7 @@ import by.logonuk.dto.account.AccountTransferRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Account", description = "Account API")
+@Tag(name = "Account", description = "Управление аккаунтами пользователя")
 public interface AccountController {
 
     @Operation(summary = "Создать новый аккаунт для пользователя")
