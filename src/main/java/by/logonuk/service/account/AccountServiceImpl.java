@@ -8,9 +8,10 @@ import by.logonuk.domain.exceptions.AccountNotFoundException;
 import by.logonuk.domain.exceptions.CurrencyMismatchException;
 import by.logonuk.domain.exceptions.InsufficientFundsException;
 import by.logonuk.domain.exceptions.UserAlreadyExistsException;
-import by.logonuk.dto.account.AccountCreateRequest;
-import by.logonuk.dto.account.AccountTransactionRequest;
-import by.logonuk.dto.account.AccountTransferRequest;
+import by.logonuk.dto.request.account.AccountCreateRequest;
+import by.logonuk.dto.request.account.AccountTransactionRequest;
+import by.logonuk.dto.request.account.AccountTransferRequest;
+import by.logonuk.dto.request.account.GetAccountInfoRequest;
 import by.logonuk.repository.AccountRepository;
 import by.logonuk.repository.UserRepository;
 import by.logonuk.service.manager.ManagerService;
@@ -32,6 +33,11 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository repository;
 
     private final UserRepository userRepository;
+
+    @Override
+    public Account getInfo(GetAccountInfoRequest request) {
+        return valid(request.getAccountNumber());
+    }
 
     @Override
     public Account accountCreate(AccountCreateRequest request) {

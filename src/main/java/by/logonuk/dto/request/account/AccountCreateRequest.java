@@ -1,4 +1,4 @@
-package by.logonuk.dto.account;
+package by.logonuk.dto.request.account;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserAspect {
 
-    @Pointcut("execution(* by.logonuk.rest.user.UserControllerImpl.*(..))")
+    @Pointcut("execution(* by.logonuk.rest.user.UserControllerImpl.*(..)) && !execution(* by.logonuk.rest.user.UserControllerImpl.findAll(..))")
     public void accountControllerMethods() {}
 
     @Before("accountControllerMethods()")
