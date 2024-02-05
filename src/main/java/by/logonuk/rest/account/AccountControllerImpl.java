@@ -24,32 +24,24 @@ public class AccountControllerImpl implements AccountController {
     @Override
     @PostMapping("/create")
     public Account createAccount(@RequestBody @Valid AccountCreateRequest request) {
-        Account account = service.accountCreate(request);
-        log.info("[createAccount] <-- {}", account);
-        return account;
+        return service.accountCreate(request);
     }
 
     @Override
     @PostMapping("/replenish")
     public Account replenishBalance(@RequestBody @Valid AccountTransactionRequest request) {
-        Account account = service.replenishBalance(request);
-        log.info("[replenishBalance] <-- {}", account);
-        return account;
+        return service.replenishBalance(request);
     }
 
     @Override
     @PostMapping("/writing")
     public Account writingBalance(@RequestBody @Valid AccountTransactionRequest request) {
-        Account account = service.writingBalance(request);
-        log.info("[writingBalance] <-- {}", account);
-        return account;
+        return service.writingBalance(request);
     }
 
     @Override
     @PostMapping("/transfer")
     public Account transfer(@RequestBody @Valid AccountTransferRequest request) {
-        Account account = service.transfer(request);
-        log.info("[transfer] <-- {}", account);
-        return account;
+        return service.transfer(request);
     }
 }

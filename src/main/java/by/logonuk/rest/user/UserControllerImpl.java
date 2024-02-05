@@ -31,8 +31,6 @@ public class UserControllerImpl implements UserController{
     @Override
     @PostMapping("/create")
     public User createUser(@RequestBody @Valid UserCreateRequest request) {
-        User user = service.createUser(request);
-        log.info("[createUser] <-- {}", user);
-        return user;
+        return service.createUser(request);
     }
 }

@@ -2,6 +2,7 @@ package by.logonuk.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -23,5 +24,11 @@ public class AccountAspect {
         for (Object request : args) {
             log.info("[{}] --> {}", methodName, request);
         }
+    }
+
+    @AfterReturning(pointcut = "accountControllerMethods()", returning = "result")
+    public void logAfterReturning(JoinPoint joinPoint, Object result) {
+        String methodName = joinPoint.getSignature().getName();
+        log.info("[{}] <-- {}", methodName, result);
     }
 }
