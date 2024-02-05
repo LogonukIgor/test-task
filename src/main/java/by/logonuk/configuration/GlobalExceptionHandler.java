@@ -1,5 +1,6 @@
 package by.logonuk.configuration;
 
+import by.logonuk.domain.entity.Account;
 import by.logonuk.domain.exceptions.AccountNotFoundException;
 import by.logonuk.domain.exceptions.CurrencyMismatchException;
 import by.logonuk.domain.exceptions.InsufficientFundsException;

@@ -15,6 +15,7 @@ public class AccountAspect {
 
     @Pointcut("execution(* by.logonuk.rest.account.AccountControllerImpl.*(..))")
     public void accountControllerMethods() {}
+
     @Pointcut("execution(* by.logonuk.rest.account.AccountControllerImpl.getInfo(..))")
     public void accountControllerGetInfo() {}
 

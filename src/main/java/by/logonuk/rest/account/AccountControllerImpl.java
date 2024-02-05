@@ -49,8 +49,7 @@ public class AccountControllerImpl implements AccountController {
     public Account replenishBalance(@RequestBody @Valid AccountTransactionRequest request) {
         Account account = service.replenishBalance(request);
 
-        log.info("[replenishBalance] <-- {}, {}", account.getUuid(), account.getManagers().stream()
-                .map(manager -> manager.getOperationType() + " - " + manager.getQuantity()).toList());
+        logResponse(account, "replenishBalance");
 
         return account;
     }
@@ -60,8 +59,7 @@ public class AccountControllerImpl implements AccountController {
     public Account writingBalance(@RequestBody @Valid AccountTransactionRequest request) {
         Account account = service.writingBalance(request);
 
-        log.info("[writingBalance] <-- {}, {}", account.getUuid(), account.getManagers().stream()
-                .map(manager -> manager.getOperationType() + " - " + manager.getQuantity()).toList());
+        logResponse(account, "writingBalance");
 
         return account;
     }
@@ -71,9 +69,14 @@ public class AccountControllerImpl implements AccountController {
     public Account transfer(@RequestBody @Valid AccountTransferRequest request) {
         Account account = service.transfer(request);
 
-        log.info("[transfer] <-- {}, {}", account.getUuid(), account.getManagers().stream()
-                .map(manager -> manager.getOperationType() + " - " + manager.getQuantity()).toList());
+        logResponse(account, "transfer");
 
         return account;
+    }
+
+
+    private void logResponse(Account account, String method) {
+        log.info("[{}] <-- {}, {}", method, account.getUuid(), account.getManagers().stream()
+                .map(manager -> manager.getOperationType() + " - " + manager.getQuantity()).toList());
     }
 }
