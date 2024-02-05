@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
     private final ManagerService managerService;
@@ -80,7 +81,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    @Transactional
     public Account transfer(AccountTransferRequest request) {
         Account account = valid(request.getAccountNumber(), request.getCode());
         Account targetAccount = valid(request.getTargetAccountNumber());

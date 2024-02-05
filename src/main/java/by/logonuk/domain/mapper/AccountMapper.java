@@ -4,14 +4,12 @@ import by.logonuk.domain.entity.Account;
 import by.logonuk.domain.entity.Manager;
 import by.logonuk.dto.responce.account.AccountManagerResponse;
 import by.logonuk.dto.responce.account.AccountResponse;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountMapper {
 
     public AccountResponse mapAccountToResponse(Account account) {
