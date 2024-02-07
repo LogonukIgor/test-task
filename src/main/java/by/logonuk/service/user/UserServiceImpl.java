@@ -2,6 +2,7 @@ package by.logonuk.service.user;
 
 import by.logonuk.domain.entity.User;
 import by.logonuk.domain.exceptions.UserAlreadyExistsException;
+import by.logonuk.domain.exceptions.UserNotFoundException;
 import by.logonuk.domain.mapper.UserMapper;
 import by.logonuk.dto.request.user.UserCreateRequest;
 import by.logonuk.dto.request.user.UserWithAccountsRequest;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public User findOne(UserWithAccountsRequest request) {
         Optional<User> existingUser = repository.findByLogin(request.getLogin());
         if (existingUser.isEmpty()) {
-            throw new UserAlreadyExistsException(request.getLogin());
+            throw new UserNotFoundException(request.getLogin());
         }
         return existingUser.get();
     }
